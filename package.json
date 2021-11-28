@@ -1,0 +1,110 @@
+{
+  "name": "Screeps21_kAI4",
+  "version": "1.0.0",
+  "description": "Screeps AI for personal use",
+  "main": "index.js",
+  "//": "If you add or change the names of destinations in screeps.json, make sure you update these scripts to reflect the changes",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaimodo/Screeps21_kAI4.git"
+  },
+  "author": "Kaimodo",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/Kaimodo/Screeps21_kAI4/issues"
+  },
+  "homepage": "https://github.com/Kaimodo/Screeps21_kAI4#readme",
+  "engines": {
+    "node": "8.x || 12.x"
+  },
+  "scripts": {
+    "rollup-help": "rollup --help",
+    "lint": "eslint \"src/**/*.ts\"",
+    "build": "rollup -c",
+    "upd-patch": "npm version patch && npm run changelog",
+    "upd-minor": "npm version minor && npm run changelog",
+    "upd-mayor": "npm version mayor && npm run changelog",
+    "push-main": "rollup -c --environment DEST:main",
+    "push-pserver": "rollup -c --environment DEST:pserver",
+    "push-onlinepserver": "rollup -c --environment DEST:onlinepserver",
+    "push-azure": "rollup -c --environment DEST:azure",
+    "push-season": "rollup -c --environment DEST:season",
+    "push-sim": "rollup -c --environment DEST:sim",
+    "test": "npm run test-unit",
+    "test-unit": "mocha test/unit/**/*.ts",
+    "test-integration": "echo 'See docs/in-depth/testing.md for instructions on enabling integration tests'",
+    "watch-main": "rollup -cw --environment DEST:main",
+    "watch-pserver": "rollup -cw --environment DEST:pserver",
+    "watch-onlinepserver": "rollup -cw --environment DEST:onlinepserver",
+    "watch-season": "rollup -cw --environment DEST:season",
+    "watch-sim": "rollup -cw --environment DEST:sim",
+    "create-flow-chart": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./createSVG.ps1",
+    "changelog": "auto-changelog --template changelog-template.hbs -p -u --commit-limit false",
+    "changelog-debug": "auto-changelog --template changelog-template.hbs -p --template json --output changelog-data.json",
+    "create-typedoc-files": "typedoc --options ./typedocconfig.ts"
+  },
+  "auto-changelog": {
+    "commitLimit": false,
+    "unreleased": true,
+    "issueUrl": "https://github.com/Kaimodo/Screeps21_kAI4/issues/{id}",
+    "replaceText": {
+      "[Ff]eature:": "",
+      "[Ff]ix:": "",
+      "[Bb]reak:": "",
+      "([A-Z]+-\\d+)": "[$1](https://github.com/Kaimodo/Screeps21_kAI4/issues/$1) - "
+    },
+    "includeBranch": [
+      "main"
+    ]
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-multi-entry": "^3.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@types/chai": "^4.1.6",
+    "@types/lodash": "3.10.2",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^13.13.1",
+    "@types/screeps": "^3.2.3",
+    "@types/screeps-profiler": "^1.2.0",
+    "@types/sinon": "^5.0.5",
+    "@types/sinon-chai": "^3.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "@typescript-eslint/typescript-estree": "^4.29.1",
+    "auto-changelog": "^2.3.0",
+    "chai": "^4.2.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "js2flowchart": "^1.3.2",
+    "lodash": "^3.10.1",
+    "mocha": "^5.2.0",
+    "prettier": "^2.3.2",
+    "rollup": "^2.56.2",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-nodent": "^0.2.2",
+    "rollup-plugin-progress": "^1.1.2",
+    "rollup-plugin-screeps": "^1.0.1",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-version-injector": "^1.3.3",
+    "rollup-plugin-visualizer": "^5.5.2",
+    "screeps-profiler": "^2.0.1",
+    "sinon": "^6.3.5",
+    "sinon-chai": "^3.2.0",
+    "ts-node": "^10.2.0",
+    "tsconfig-paths": "^3.10.1",
+    "typedoc": "^0.22.9",
+    "typedoc-plugin-markdown": "^3.11.7",
+    "typedoc-plugin-merge-modules": "^3.0.2",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "screeps-inscribe": "^0.2.0",
+    "source-map": "~0.6.1"
+  }
+}
