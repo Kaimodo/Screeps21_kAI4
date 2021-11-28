@@ -18,8 +18,8 @@
 # Screeps Config
 screeps.json
 
-# SVG-Files
-*.svg
+# True-files
+**true
 
 #Debug-Changelog data
 changelog-data.json
