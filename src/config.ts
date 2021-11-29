@@ -4,6 +4,17 @@
 export const TARGET_MEM_VERSION: string = "1";
 
 /**
+ *  Max Hitpoints of Walls
+ */
+export const MAX_WALL_HP: number = 100000;
+
+/**
+ *  Max Hitpoints of Ramparts
+ */
+export const MAX_RAMP_HP: number = 100000;
+
+
+/**
  * Enable this to enable screeps profiler
  */
  export const USE_PROFILER: boolean = true
