@@ -1,7 +1,7 @@
 /**
  * The target Memory Version
  */
-export const TARGET_MEM_VERSION: string = "2";
+export const TARGET_MEM_VERSION: string = "1";
 
 /**
  * Enable this to enable screeps profiler

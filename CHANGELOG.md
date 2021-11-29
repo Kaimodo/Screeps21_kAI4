@@ -1,7 +1,13 @@
 #
 v1.0.1
-[2021-11-28]
+[2021-11-29]
 
+### Features
+
+*
+added basic Logic for testing
+([`e66ddbd`](https://github.com/Kaimodo/screeps21_kAI4/commit/e66ddbd1779d6f7d4a7e28343cbb24868a887d1d))
+11-Files changed|130-Insertions|39-Deletions
 
 
 #
