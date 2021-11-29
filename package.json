@@ -1,6 +1,6 @@
 {
   "name": "Screeps21_kAI4",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Screeps AI for personal use",
   "main": "index.js",
   "//": "If you add or change the names of destinations in screeps.json, make sure you update these scripts to reflect the changes",
