@@ -54,8 +54,8 @@ export const Splash = () => {
 	try {
 		const version = `[VI]{version}[/VI]`;
 		const date = `[VI]{date}[/VI]`;
-		  if (!Memory.version || Memory.version !== version) {
-			Memory.version = version;
+		  if (!Memory.codeVersion || Memory.codeVersion !== version) {
+			Memory.codeVersion = version;
 		  }
 		  if (!Memory.date || Memory.date !== date) {
 			Memory.date = date;
@@ -75,7 +75,7 @@ export const Splash = () => {
                     ║║
                     ╚╝
 =========================================================
-= Version: ${Memory.version}  BuildDate: ${Memory.date} =
+= Version: ${Memory.codeVersion}  BuildDate: ${Memory.date} =
 =========================================================
 </p>
 `);

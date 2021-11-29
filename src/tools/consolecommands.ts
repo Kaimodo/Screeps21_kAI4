@@ -14,10 +14,27 @@ export const ConsoleCommands = {
     console.log(`[${Inscribe.color("CC", "skyblue")}] List of Commands:`);
     console.log(`[${Inscribe.color("CC", "skyblue")}] help() | Shows this list.`);
     console.log(`[${Inscribe.color("CC", "skyblue")}] test() | Check if Commands work`);
+    console.log(`[${Inscribe.color("CC", "skyblue")}] setMem(number) | Set Memory.version to *number*`);
+    console.log(`[${Inscribe.color("CC", "skyblue")}] getMem() | Shows Memory.version`);
     console.log(`[${Inscribe.color("CC", "skyblue")}] cpuUsedParsing() | Show how much CPU is used for parsing the Memory`);
     console.log(`[${Inscribe.color("CC", "red")}] killAll(room name) | Kill all Screeps in given Room`);
     console.log(`[${Inscribe.color("CC", "red")}] destroyAllStruct() | Destroy all own Structures in ALL Rooms`);
     console.log(`[${Inscribe.color("CC", "red")}] rc(room-Name, leaveStarted, StructType) | Remove construction Sites`);
+  },
+  /**
+   * Set the actual Memory Version
+   * @param The Number u wanna Set
+   */
+   setMem(Version: number) {
+     Memory.version = Version.toString();
+     console.log(`[${Inscribe.color("CC", "blue")}] Setting Game-Memory-Version to ${Memory.version}`);
+  },
+
+  /**
+   * Get the actual Memory version
+   */
+   getMem() {
+     console.log(`[${Inscribe.color("CC", "green")}] Game-Memory-Version: ${Memory.version}`);
   },
   /**
    * Destroy all own Structures in ALL Rooms

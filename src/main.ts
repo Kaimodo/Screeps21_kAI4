@@ -18,12 +18,18 @@ import { Emoji, Splash } from './tools/Emoji';
 import * as Orga from "./organize.json";
 
 import { StatsManager } from './tools/stats';
+import { RoomManager } from "./components/internals";
+
+import * as Config from 'config';
+
+
+
 
 
 
 //New Script loaded
 console.log(`[${Inscribe.color("New Script loaded", "red")}] ${Emoji.reload}`);
-
+Splash();
 
 if (USE_PROFILER) {
   log.info("Profiler an: "+ USE_PROFILER);
@@ -31,10 +37,17 @@ if (USE_PROFILER) {
 }
 
 // Clear Memory
-Tools.clearMemory()
+if (!Memory.version || (Memory.version !== Config.TARGET_MEM_VERSION)) {
+  const memOld = Memory.version
+  Memory.version = Config.TARGET_MEM_VERSION
+  log.info(` Memory: ${memOld}/${Memory.version}/${Config.TARGET_MEM_VERSION}`)
+  Tools.clearMemory();
+  Memory.creeps = {};
+  Memory.rooms = {};
+  Memory.uuid = 0;
+}
 
 // Get Script loading time
-Splash();
 const elapsedCPU = Game.cpu.getUsed() - startCpu;
 console.log(`[${Inscribe.color("Script Loading needed: ", "skyblue") + elapsedCPU.toFixed(2) + " Ticks"}]`);
 
@@ -45,15 +58,22 @@ export const loop = ErrorMapper.wrapLoop(() => {
 
 
     global.cc = ConsoleCommands;
-    console.log(`Current game tick is ${Game.time}`);
-    log.debug("db");
-    log.warning("warn");
-    log.info("inf");
-    log.error("err");
-
+    log.info(`Current game tick is ${Game.time}`);
 
     // Main Loop here:
+    if (!Memory.uuid || Memory.uuid > 1000) {
+      Memory.uuid = 0;
+    }
 
+    for (const r in Game.rooms) {
+      const room: Room = Game.rooms[r];
+      const roomMem: RoomMemory = room.memory;
+      if (Object.keys(roomMem).length === 0) {
+        log.info(`Init room Memory for ${room.name}`);
+        RoomManager.initRoomMemory(room, room.name);
+      }
+      RoomManager.run(room, roomMem);
+    }
 
     Tools.log_info()
     Tools.ClearNonExistingCreeMemory();
