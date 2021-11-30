@@ -9,6 +9,7 @@ interface Memory {
 }
 
 interface CreepMemory {
+    [name: string]: any;
     role: string;
     room: string;
     working?: boolean;

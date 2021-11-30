@@ -17,6 +17,7 @@ export class RoomManager {
         log.debug(`INIT: ${roomName}`)
         const roomMem: RoomMemory = Memory.rooms[roomName];
         roomMem.energyLevel = room.energyAvailable;
+        // TODO TASK-Manager for Sources
         roomMem.energySources = room.find(FIND_SOURCES);
         if (room.controller) {
             roomMem.controller = room.controller;
