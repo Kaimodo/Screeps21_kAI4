@@ -31,6 +31,7 @@ import * as Config from 'config';
 console.log(`[${Inscribe.color("New Script loaded", "red")}] ${Emoji.reload}`);
 Splash();
 
+global.resetTime = Game.time;
 if (USE_PROFILER) {
   log.info("Profiler an: "+ USE_PROFILER);
   Profiler.enable();
@@ -42,9 +43,6 @@ if (!Memory.version || (Memory.version !== Config.TARGET_MEM_VERSION)) {
   Memory.version = Config.TARGET_MEM_VERSION
   log.info(` Memory: ${memOld}/${Memory.version}/${Config.TARGET_MEM_VERSION}`)
   Tools.clearMemory();
-  Memory.creeps = {};
-  Memory.rooms = {};
-  Memory.uuid = 0;
 }
 
 // Get Script loading time
@@ -56,6 +54,12 @@ console.log(`[${Inscribe.color("Script Loading needed: ", "skyblue") + elapsedCP
 export const loop = ErrorMapper.wrapLoop(() => {
   Profiler.wrap(() => {
 
+    if (global.resetTime = Game.time) {
+      global.reset = true;
+      log.info(`Global reset: ${global.reset}`)
+    } else {
+      global.reset = false;
+    }
 
     global.cc = ConsoleCommands;
     log.info(`Current game tick is ${Game.time}`);
@@ -68,9 +72,9 @@ export const loop = ErrorMapper.wrapLoop(() => {
     for (const r in Game.rooms) {
       const room: Room = Game.rooms[r];
       const roomMem: RoomMemory = room.memory;
-      if (Object.keys(roomMem).length === 0) {
-        log.info(`Init room Memory for ${room.name}`);
-        RoomManager.initRoomMemory(room, room.name);
+      if (Object.keys(roomMem).length === 0 || global.reset=== true) {
+        log.info(`Reset room Memory for ${room.name}`);
+        Tools.clearMemory();
       }
       RoomManager.run(room, roomMem);
     }

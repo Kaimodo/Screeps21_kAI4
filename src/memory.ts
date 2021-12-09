@@ -10,10 +10,11 @@ interface Memory {
 
 interface CreepMemory {
     [name: string]: any;
-    role: string;
+    role: CreepRoles;
     room: string;
     working?: boolean;
     homeRoom: string;
+    assignedTask: Task;
 }
 
 interface FlagMemory { [name: string]: any }
@@ -26,72 +27,39 @@ interface SpawnMemory { [name: string]: any }
  */
 interface RoomMemory {
     [name: string]: any;
+    creeps: Creep[];
+    creepCount: number;
+    miners: Creep[];
     energyLevel: number;
     controller: StructureController;
     energySources: Source[];
-    spawn: StructureSpawn;
+    containers: StructureContainer[];
+    spawns: StructureSpawn[];
     desiredRampHitPoints?: number;
     desiredWallHitPoints?: number;
     tasks: Tasks[];
 }
 
-interface Tasks {
-    uuid: number;
-    taskType: Task;
-}
-
 /**
- * Several Tasks Creeps can do
- * @interface Task
+ * The Creep Roles as Number
+ * @export CreepRoles
+ * @enum {number}
  */
-interface Task {
-    minerTask: MinerTask;
-}
+ const enum CreepRoles
+ {
+     ROLE_UNASSIGNED = 0,
+     ROLE_ALL,
+     ROLE_BUILDER,
+     ROLE_MINER,
+     ROLE_MINEHAULER,
+     ROLE_HEALER,
+     ROLE_FIGHTER,
+     ROLE_RANGER,
+     ROLE_CLAIMER,
+     ROLE_REMOTEMINER,
+     ROLE_REMOTEMINEHAULER,
+     ROLE_CUSTOMCONTROL,
+     ROLE_UPGRADER,
+     ROLE_UPGRADETRANSPORT
+ }
 
-/**
- * A task given from the Room to the Creep
- * @export MinerTask
- * @interface MinerTask
- */
-interface MinerTask {
-    taskId: number;
-    minerPosition: PositionPlusTarget;
-    assignedMinerName?: string;
-    sourceContainer: PositionPlusTarget | undefined;
-}
-
-/**
- * A Position (x/y)
- * @export MyPosition
- * @interface MyPosition
- * {x} X-positon
- * {y} Y-positon
- */
-interface MyPosition
- {
-     x: number;
-     y: number;
- }
- /**
-  * Position (x/y)
-  * @export PositionPlusTarget
-  * @interface PositionPlusTarget
-  */
-interface PositionPlusTarget
- {
-     x: number;
-     y: number;
-     targetId: string;
- }
- /**
-  * A Room Position (x/y) plus target
-  * @export RoomPositionPlusTarget
-  * @interface RoomPositionPlusTarget
-  */
-interface RoomPositionPlusTarget
- {
-     roomTarget: string;
-     x: number;
-     y: number;
-     targetId: string;
- }

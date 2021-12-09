@@ -8,5 +8,7 @@ declare namespace NodeJS {
             showSource: boolean,
             showTick: boolean
         };
+        resetTime: number;
+        reset: boolean;
     }
 }

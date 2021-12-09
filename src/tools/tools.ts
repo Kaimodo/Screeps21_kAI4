@@ -46,6 +46,9 @@ export function ClearNonExistingCreeMemory() {
       delete Memory.rooms[name];
     }
   }
+  Memory.creeps = {};
+  Memory.rooms = {};
+  Memory.uuid = 0;
 }
 
 /**
